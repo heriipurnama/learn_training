@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- tree view -->
+    <record id="academic_course_tree" model="ir.ui.view">
+        <field name="name">academic.course.tree</field>
+        <field name="model">academic.course</field>
+        <field name="type" >tree</field>
+        <field name="arch" type="xml">
+            <tree string="course tree" >
+               <field name="name" />
+               <field name="description" />
+               <field name="responsible_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view -->
+    <record id="academic_course_form" model="ir.ui.view">
+        <field name="name">academic.course.form</field>
+        <field name="model">academic.course</field>
+        <field name="type" >form</field>
+        <field name="arch" type="xml">
+            <form string="course form">
+              <sheet>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only" string="Course Name" />
+                    <h1>
+                        <field name="name" placeholder="name"></field>
+                    </h1>
+                    <group name="esponsible_id" string="Responsible">
+                        <field name="responsible_id"></field>
+                    </group>
+                    <notebook >
+                        <page name="Description" string="Description">
+                            <field name="description"></field>
+                        </page>
+                    </notebook>
+                </div>
+              </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

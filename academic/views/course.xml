@@ -25,14 +25,36 @@
                 <div class="oe_title">
                     <label for="name" class="oe_edit_only" string="Course Name" />
                     <h1>
-                        <field name="name" placeholder="name"></field>
+                        <field name="name" placeholder="name"/>
                     </h1>
                     <group name="esponsible_id" string="Responsible">
-                        <field name="responsible_id"></field>
+                        <field name="responsible_id"/>
                     </group>
                     <notebook >
                         <page name="Description" string="Description">
-                            <field name="description"></field>
+                            <field name="description"/>
+                        </page>
+                         <page name="Sessions" string="Session">
+                            <field name="session_ids">
+                                <tree string="sesion tree" editable="bottom">
+                                    <field name="instructor_id"></field>
+                                    <field name="name"></field>
+                                    <field name="start_date"></field>
+                                    <field name="duration"></field>
+                                    <field name="seats"></field>
+                                    <field name="active"></field>
+                                </tree>
+                                <form>
+                                <!-- pop up session form -->
+                                    <group name="session pop up" string="Create Session">
+                                        <field name="instructor_id"></field>
+                                        <field name="name"></field>
+                                        <field name="start_date"></field>
+                                        <field name="duration"></field>
+                                        <field name="seats"></field>  
+                                    </group>
+                                </form>
+                            </field>
                         </page>
                     </notebook>
                 </div>

@@ -11,3 +11,8 @@ class Course(models.Model):
         string="Responsible",
         required=True)
     
+    session_ids = fields.One2many(
+            comodel_name="academic.session",
+            string="sessions",
+            inverse_name="course_id"
+        )

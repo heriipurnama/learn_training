@@ -8,8 +8,12 @@
         <field name="arch" type="xml">
             <tree string="session tree" >
                <field name="name" />
-               <!-- <field name="description" />
-               <field name="responsible_id" /> -->
+               <field name="course_id" />
+               <field name="instructor_id" />
+               <field name="start_date" />
+               <field name="duration" />
+               <field name="seats" />
+               <field name="active" />
             </tree>
         </field>
     </record>
@@ -21,22 +25,26 @@
         <field name="type" >form</field>
         <field name="arch" type="xml">
             <form string="session form">
-              <sheet>
-                <div class="oe_title">
-                    <label for="name" class="oe_edit_only" string="session Name" />
-                    <h1>
-                        <field name="name" placeholder="name"></field>
-                    </h1>
-                    <!-- <group name="esponsible_id" string="Responsible">
-                        <field name="responsible_id"></field>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="session name" ></label>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div> 
+                    <group>
+                        <group name="group course" >
+                            <field name="course_id" />
+                            <field name="instructor_id" />
+                            <field name="start_date" />
+                        </group>
+                        <group name="group duration">
+                            <field name="duration" />
+                            <field name="seats" />
+                            <field name="active" />
+                        </group>
                     </group>
-                    <notebook >
-                        <page name="Description" string="Description">
-                            <field name="description"></field>
-                        </page>
-                    </notebook> -->
-                </div>
-              </sheet>
+                </sheet>
             </form>
         </field>
     </record>

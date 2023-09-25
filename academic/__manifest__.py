@@ -15,6 +15,7 @@
         'views/menu.xml',
         'views/course.xml',
         'views/session.xml',
+        'views/attendee.xml',
     ],
     'demo': [
         

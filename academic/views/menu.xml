@@ -30,6 +30,20 @@
             </field>
         </record>
 
+        <!-- action attendee -->
+        <record id="action_attendee_list" model="ir.actions.act_window">
+            <field name="name">Daftar attendee</field>
+            <field name="res_model">academic.attendee</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+		    <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a Attendee
+                </p>
+                <p>Klik tombol create untuk bikin Attendee baru</p>
+            </field>
+        </record>
 
         <menuitem
             id="academic_0"
@@ -51,6 +65,12 @@
             name="Session"
             parent="academic_1"
             action="action_session_list"
-            sequence="20"/>     
+            sequence="20"/>  
+        <menuitem
+            id="menu_academic_attendee"
+            name="Attendee"
+            parent="academic_1"
+            action="action_attendee_list"
+            sequence="20"/>    
     </data>
 </odoo>

@@ -44,6 +44,11 @@
                             <field name="active" />
                         </group>
                     </group>
+                    <notebook>
+                        <page name="notebook attendee" string="Attendees">
+                            <field name="attendee_ids"></field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

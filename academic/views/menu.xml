@@ -45,6 +45,15 @@
             </field>
         </record>
 
+        <!-- action instructor -->
+        <record id="action_instructor_list" model="ir.actions.act_window">
+            <field name="name">Daftar instructor</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+		    <field name="context">{"search_default_instructor":1}</field>
+        </record>
+
         <menuitem
             id="academic_0"
             name="Academic"
@@ -71,6 +80,12 @@
             name="Attendee"
             parent="academic_1"
             action="action_attendee_list"
+            sequence="20"/>   
+        <menuitem
+            id="menu_academic_instructor"
+            name="Instructor"
+            parent="academic_1"
+            action="action_instructor_list"
             sequence="20"/>    
     </data>
 </odoo>

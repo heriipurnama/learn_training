@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_instructor_form" model="ir.ui.view">
+            <field name="name">view.instructor.form</field>
+            <field name="model">res.partner</field>
+            <field name="type" >form</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <field name="function" position="after">
+                    <field name="is_instructor"></field>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_instructor_filter" model="ir.ui.view">
+            <field name="name">view.instructor.filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <search string="Search Partner">
+                    <filter name="Instructor" string="Instructor" domain="[('is_instructor', '=', 1)]"
+                            help="Instructor Partner" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -57,3 +57,13 @@ class Session(models.Model):
     # elm.1: nama fungsi
     # elm.2: message
     # elm.3: list field-field yg mau di seteksi inputan
+
+    # method copy to duplicated form.
+    def copy(self, default=None):
+        # modif....
+        print("default==> ", default)
+        self.ensure_one()
+        default = dict(default or {},
+                       name=_('Copy of %s') % self.name)
+        return super(Session, self).copy(default=default)
+        

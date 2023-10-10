@@ -23,6 +23,8 @@ class Session(models.Model):
     
     taken_seats = fields.Float(string="Taken Seats",
                                compute="_taken_seats")
+    
+    image_small = fields.Binary("Image")
    
     def _taken_seats(self):
         for rec in self:
@@ -32,7 +34,7 @@ class Session(models.Model):
                 rec.taken_seats = 0.0
     
     @api.onchange('seats')
-    def oChange_seats(self):
+    def onChange_seats(self):
         if self.seats > 0:
             self.taken_seats = 100.0 * len(self.attendee_ids)/ self.seats
         else:

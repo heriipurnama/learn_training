@@ -6,7 +6,8 @@
         <field name="model">academic.session</field>
         <field name="type" >tree</field>
         <field name="arch" type="xml">
-            <tree string="session tree" >
+            <tree string="session tree" 
+                    decoration-danger="taken_seats &lt;= 20" decoration-success="taken_seats &gt; 20" default_order="name asc">
                <field name="name" />
                <field name="course_id" />
                <field name="instructor_id" />
@@ -39,6 +40,7 @@
                             <field name="instructor_id" 
                                    domain="['|',('is_instructor','=',True), ('category_id','ilike','pelatih')]" />
                             <field name="start_date" />
+                            <field name="image_small" widget="image" class="oe_left oe_avatar" />
                         </group>
                         <group name="group duration">
                             <field name="duration" />
@@ -59,6 +61,101 @@
                     </notebook>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- calendar view -->
+    <record id="academic_session_calendar" model="ir.ui.view">
+        <field name="name">academic.session.calendar</field>
+        <field name="model">academic.session</field>
+        <field name="type" >calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="session calendar" 
+                      date_start = "start_date"
+                      color="course_id">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="academic_session_search" model="ir.ui.view">
+        <field name="name">academic.session.search</field>
+        <field name="model">academic.session</field>
+        <field name="type" >search</field>
+        <field name="arch" type="xml">
+            <search string="session search">
+                <field name="name"/>
+                <field name="instructor_id"/>
+
+                <filter name="filter_non_zero_duration" 
+                        string="Non Zero Duration" 
+                        domain="[('duration', '&gt;', 0)]" 
+                />
+
+                <filter name="course" 
+                        string="course" 
+                        domain="[]"
+                        context="{'group_by':'course_id'}"
+                />
+
+                <filter name="instructor" 
+                        string="instructor" 
+                        domain="[]"
+                        context="{'group_by':'instructor_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+
+    <!-- graph view -->
+    <record id="academic_session_graph" model="ir.ui.view">
+        <field name="name">academic.session.graph</field>
+        <field name="model">academic.session</field>
+        <field name="type" >graph</field>
+        <field name="arch" type="xml">
+            <graph string="session graph" type="bar">
+                <field name="instructor_id"/>
+                <field name="seats" operator="+"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- kanban view -->
+    <record id="academic_session_kanban" model="ir.ui.view">
+        <field name="name">academic.session.kanban</field>
+        <field name="model">academic.session</field>
+        <field name="type" >kanban</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="course_id">
+                <field name="id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_vignette">
+                              <a type="open">
+                                	<img
+                                    t-att-src="kanban_image('academic.session',
+                                    'image_small', record.id.raw_value)"
+                                    class="o_kanban_image"/>
+                                </a>
+                            <div class="oe_kanban_details">
+                                <h4>
+                                    <a type="open"><field name="name"/></a>
+                                </h4>
+                                <ul>
+                                    <li>
+                                        seats: <field name="seats"></field>
+                                    </li>
+                                    <li>
+                                        taken: <field name="taken_seats"></field>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 </odoo>

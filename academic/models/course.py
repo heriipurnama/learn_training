@@ -16,3 +16,13 @@ class Course(models.Model):
             string="sessions",
             inverse_name="course_id"
         )
+    
+    # check constraint with SQL
+    _sql_constraints = [
+        ('sql_check_name', 'UNIQUE(name)', 'Duplicate Name!'),
+        ('sql_check_description','CHECK(name <> description)', 'Name and description cannot be same!')
+    ]
+    # note: 
+    # elm.1: nama contraint
+    # elm.2: function contraint
+    # elm.3: message

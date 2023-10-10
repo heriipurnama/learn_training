@@ -37,3 +37,23 @@ class Session(models.Model):
             self.taken_seats = 100.0 * len(self.attendee_ids)/ self.seats
         else:
             self.taken_seats = 0.0
+
+    def check_instructor(self):
+        # contraint with python script!
+        for session in self:
+        # metode 1
+        #    a = []
+        #    for attendee in session.attendee_ids:
+        #        a.append(attendee.partner_id.id)
+
+        # metode 2
+            a = [attendee.partner_id.id for attendee in session.attendee_ids]
+            if session.instructor_id.id in a:
+                return False   
+        return True
+
+    _constraint = [(check_instructor,'Instruktur Tidak Boleh Merangkap jadi Attendee',['instructor_id', 'attendee_ids'])]
+    # note: nama topel python
+    # elm.1: nama fungsi
+    # elm.2: message
+    # elm.3: list field-field yg mau di seteksi inputan

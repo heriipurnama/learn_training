@@ -9,15 +9,12 @@ class Attendee(models.Model):
                                  string="Session")
     partner_id = fields.Many2one(comodel_name="res.partner",
                                  string="Partner")
-    # course_id = fields.Many2one(
-    #     comodel_name="academic.course",
-    #     string="Course")
-    # instructor_id = fields.Many2one(
-    #     comodel_name="res.partner",
-    #     string="Instructor")
     
-    # start_date = fields.Date("Start Date")
-    # duration = fields.Integer("Duration")
-    # seats = fields.Integer("Seats")
-    # active = fields.Boolean("is Actice", default=True)
-    
+     # check constraint with SQL
+    _sql_constraints = [
+        ('sql_check_attendee', 'UNIQUE(session_id, partner_id)', 'Atendee Cannot double on one session!')
+    ]
+    # note: 
+    # elm.1: nama contraint
+    # elm.2: function contraint
+    # elm.3: message

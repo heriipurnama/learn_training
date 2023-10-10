@@ -49,7 +49,12 @@
                     </group>
                     <notebook>
                         <page name="notebook attendee" string="Attendees">
-                            <field name="attendee_ids"></field>
+                            <field name="attendee_ids">
+                                <tree string="Attendees" editable="bottom">
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

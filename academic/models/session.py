@@ -1,5 +1,5 @@
 from odoo import api, fields, models, _
-
+import time
 
 class Session(models.Model):
     _name = 'academic.session'
@@ -12,7 +12,7 @@ class Session(models.Model):
         comodel_name="res.partner",
         string="Instructor")
     
-    start_date = fields.Date("Start Date")
+    start_date = fields.Date("Start Date", default=lambda self: time.strftime("%Y-%m-%d"))
     duration = fields.Integer("Duration")
     seats = fields.Integer("Seats")
     active = fields.Boolean("is Actice", default=True)

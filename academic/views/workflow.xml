@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="workflow_session" model="workflow">
+            <field eval="1" name="on_create" />
+            <field name="name" >Session</field>
+            <field name="osv" >academic.session</field>
+        </record>    
+        <record id="activity_draft" model="workflow.activity">
+            <field eval="1" name="on_create" />
+            <field name="name" >Draft</field>
+            <field name="osv" >academic.session</field>
+        </record>  
+    </data>
+</odoo>

@@ -9,6 +9,7 @@
             <tree string="attendee tree" >
                <field name="name" />
                <field name="session_id" />
+               <field name="course_id" />
                <field name="partner_id" />
             </tree>
         </field>
@@ -24,9 +25,33 @@
                 <group name="group duration">
                     <field name="name" />
                     <field name="session_id" />
+                    <field name="course_id" />
                     <field name="partner_id" />
                 </group>
             </form>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="academic_attendee_search" model="ir.ui.view">
+        <field name="name">academic.attendee.search</field>
+        <field name="model">academic.attendee</field>
+        <field name="type" >search</field>
+        <field name="arch" type="xml">
+            <search string="attendee search" >
+                <filter name="filter_course" 
+                    string="Course" 
+                    domain="[]" 
+                    context="{'group_by': 'course_id'}" />
+                  <filter name="filter_session" 
+                    string="Session" 
+                    domain="[]" 
+                    context="{'group_by': 'session_id'}" />
+                 <filter name="filter_partner" 
+                    string="Partner" 
+                    domain="[]" 
+                    context="{'group_by': 'partner_id'}" />
+            </search>
         </field>
     </record>
 </odoo>

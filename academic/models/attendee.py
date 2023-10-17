@@ -18,3 +18,10 @@ class Attendee(models.Model):
     # elm.1: nama contraint
     # elm.2: function contraint
     # elm.3: message
+
+    course_id = fields.Many2one(
+        comodel_name="academic.course",
+        string="Course",
+        related="session_id.course_id",
+        store=True
+    )

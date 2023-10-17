@@ -16,6 +16,7 @@
                <field name="seats" />
                <field name="taken_seats" widget= "progressbar" />
                <field name="active" />
+               <field name="state" />
             </tree>
         </field>
     </record>
@@ -27,6 +28,21 @@
         <field name="type" >form</field>
         <field name="arch" type="xml">
             <form string="session form">
+                <header>
+                    <button string="Confirm" 
+                            type="object" 
+                            states="draft"
+                            name="action_confirm" />
+                    <button string="Mark As Done" 
+                            type="object" 
+                            states="confirmed"
+                            name="action_done" />
+                    <button string="Reject" 
+                            type="object" 
+                            states="done"
+                            name="action_draft" />
+                   <field name="state" widget="statusbar" />
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" string="session name" ></label>

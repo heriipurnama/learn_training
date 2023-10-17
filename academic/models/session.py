@@ -1,6 +1,10 @@
 from odoo import api, fields, models, _
 import time
 
+# make Global Variabel
+STATES = [('draft','Draft'),
+         ('confirmed','Confirmed'),
+         ('done','Done')]
 class Session(models.Model):
     _name = 'academic.session'
 
@@ -68,4 +72,22 @@ class Session(models.Model):
         default = dict(default or {},
                        name=_('Copy of %s') % self.name)
         return super(Session, self).copy(default=default)
+        
+    # make workflow
+    state = fields.Selection(
+            string="State",
+            selection=STATES,
+            readonly=True,
+            required=True,
+            default=STATES[0][0]
+        )
+    
+    def action_confirm(self):
+        self.state = STATES[1][0]
+
+    def action_done(self):
+        self.state = STATES[2][0]
+    
+    def action_draft(self):
+        self.state = STATES[0][0]
         

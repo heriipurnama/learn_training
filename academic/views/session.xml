@@ -39,7 +39,7 @@
                             name="action_done" />
                     <button string="Reject" 
                             type="object" 
-                            states="done"
+                            states="confirmed, done"
                             name="action_draft" />
                    <field name="state" widget="statusbar" />
                 </header>

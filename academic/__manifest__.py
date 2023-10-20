@@ -17,6 +17,7 @@
         'views/session.xml',
         'views/attendee.xml',
         'views/partner.xml',
+        'views/group.xml',
     ],
     'demo': [
         

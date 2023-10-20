@@ -22,6 +22,11 @@
     </record>
 
     <!-- form view -->
+    <!-- *note
+          groups="academic.group_academic_user" hide button by group user.
+                  add on name  | group name 
+    
+     -->
     <record id="academic_session_form" model="ir.ui.view">
         <field name="name">academic.session.form</field>
         <field name="model">academic.session</field>
@@ -32,14 +37,17 @@
                     <button string="Confirm" 
                             type="object" 
                             states="draft"
+                            groups="academic.group_academic_user"
                             name="action_confirm" />
                     <button string="Mark As Done" 
                             type="object" 
                             states="confirmed"
+                            groups="academic.group_academic_manager"
                             name="action_done" />
                     <button string="Reject" 
                             type="object" 
                             states="confirmed, done"
+                            groups="academic.group_academic_manager"
                             name="action_draft" />
                    <field name="state" widget="statusbar" />
                 </header>

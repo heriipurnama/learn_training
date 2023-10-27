@@ -44,6 +44,7 @@
                             states="confirmed"
                             groups="academic.group_academic_manager"
                             name="action_done" />
+                    <!-- groups = name addon . name group -->
                     <button string="Reject" 
                             type="object" 
                             states="confirmed, done"

@@ -43,6 +43,7 @@
                                     <field name="duration"></field>
                                     <field name="seats"></field>
                                     <field name="active"></field>
+                                    <field name="state"></field>
                                 </tree>
                                 <form>
                                 <!-- pop up session form -->
@@ -52,6 +53,7 @@
                                         <field name="start_date"></field>
                                         <field name="duration"></field>
                                         <field name="seats"></field>  
+                                        <field name="state"></field>
                                     </group>
                                 </form>
                             </field>

@@ -8,27 +8,51 @@ STATES = [('draft','Draft'),
 class Session(models.Model):
     _name = 'academic.session'
 
-    name = fields.Char("Name", required=True, size=100)
+    name = fields.Char("Name", 
+                       required=True, 
+                       size=100, 
+                       readonly=True, 
+                       STATES={'draft':[{'readonly', False}]}
+                       )
+    # readonly true but if STATES 'draft' readonly = FALSE.
     course_id = fields.Many2one(
         comodel_name="academic.course",
-        string="Course")
+        string="Course",
+        readonly=True, 
+        STATES={'draft':[{'readonly', False}]})
+    
     instructor_id = fields.Many2one(
         comodel_name="res.partner",
+        readonly=True, 
+        STATES={'draft':[{'readonly', False}]},
         string="Instructor")
     
-    start_date = fields.Date("Start Date", default=lambda self: time.strftime("%Y-%m-%d"))
-    duration = fields.Integer("Duration")
-    seats = fields.Integer("Seats")
-    active = fields.Boolean("is Actice", default=True)
+    start_date = fields.Date("Start Date", default=lambda self: time.strftime("%Y-%m-%d"),
+                              readonly=True, 
+                              STATES={'draft':[{'readonly', False}]})
+    duration = fields.Integer("Duration",
+                               readonly=True, 
+                               STATES={'draft':[{'readonly', False}]})
+    seats = fields.Integer("Seats",
+                            readonly=True, 
+                            STATES={'draft':[{'readonly', False}]})
+    active = fields.Boolean("is Actice", default=True,
+                             readonly=True, 
+                             STATES={'draft':[{'readonly', False}]})
     
     attendee_ids = fields.One2many(comodel_name="academic.attendee",
                                    string="Attendees",
-                                   inverse_name="session_id")
+                                   inverse_name="session_id",
+                                   readonly=True, 
+                                   STATES={'draft':[{'readonly', False}]})
     
     taken_seats = fields.Float(string="Taken Seats",
-                               compute="_taken_seats")
+                                compute="_taken_seats",
+                                readonly=True)
     
-    image_small = fields.Binary("Image")
+    image_small = fields.Binary("Image",
+                                 readonly=True, 
+                                 STATES={'draft':[{'readonly', False}]})
    
     def _taken_seats(self):
         for rec in self:

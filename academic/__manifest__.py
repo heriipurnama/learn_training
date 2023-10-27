@@ -8,7 +8,8 @@
     'license': 'LGPL-3',
     'category': 'education',
     'depends': [
-        'base'
+        'base',
+        'board'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -20,6 +21,7 @@
         'views/group.xml',
         'wizard/create_attendee.xml',
         'report/session.xml',
+        'views/dashboard.xml',
     ],
     'demo': [
         

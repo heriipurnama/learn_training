@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="act_session_graph" model="ir.actions.act_window">
+            <field name="name">academic.session.graph</field>
+            <field name="res_model">academic.session</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="academic_session_graph"/>
+        </record>
+
+        <record id="act_session_calender" model="ir.actions.act_window">
+            <field name="name">academic.session.calender</field>
+            <field name="res_model">academic.session</field>
+            <!-- <field name="view_type">fsorm</field> -->
+            <field name="view_mode">calender</field>
+            <field name="view_id" ref="academic_session_calendar"/>
+        </record>
+
+        <record id="board_session_form" model="ir.ui.view">
+            <field name="name">Session Dashboard</field>
+            <field name="model">board.board</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="dashboard">
+                    <board style="2-1">
+                        <column>
+                            <action
+                                string="Attendee by course"
+                                name="%(act_session_graph)d"
+                                colspan="4"
+                                height="150"
+                                width="500"
+                            />
+
+                             <action
+                                string="Session Calender"
+                                name="%(act_session_calender)d"
+                                colspan="4"
+                            />
+                        </column>
+                        <column>
+                        </column>
+                    </board>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_board_session" model="ir.actions.act_window">
+            <field name="name">Session Dashboard</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+		    <field name="view_id" ref="board_session_form" />
+        </record>
+
+        <menuitem
+            id="menu_board_session"
+            name="Dashboard"
+            action="open_board_session"
+            parent="academic_0"
+            icon="terp-graph"
+            sequence="1"/>
+    </data>
+</odoo>

@@ -19,6 +19,7 @@
         'views/partner.xml',
         'views/group.xml',
         'wizard/create_attendee.xml',
+        'report/session.xml',
     ],
     'demo': [
         
